@@ -1,0 +1,10 @@
+# CSCI 682 Project Proposal 
+
+## Paper: Decoding Anagrammed Texts Written in an Unknown Language and Script
+## Link: https://aclanthology.org/Q16-1006.pdf
+
+For our project, we propose an extension of the researchers work and pipeline from the paper Decoding Anagrammed Texts Written in an Unknown Language and Script. We want to test how robust the researchers conclusion actually is to determine whether their conclusions are valid or there is more work that needs to be done in order to start deciphering the Voynich Manuscript (VMS). 
+
+First, we would stress-test their pipeline using null controls. Our primary concern is that the pipeline may find language like patterns even if there isn't a language to decipher. In order to test this, we propose generating meaningless text that preserves properties of the VMS including character frequencies and word lengths in order to see if the pipeline identifies Hebrew and produces seemingly meaningful decipherments. We propose a transposed corpus from a non Hebrew text, something such as lorem ipsum or Vulgate and a purely random, hoax style text like theRugg’s tabular method which is mentioned in the paper. If these still suggest Hebrew as the source language, we believe that it would weaken the original conclusion or imply that there is another intermediate step needed to help decode. Another point of contention that we found in the paper is that the researchers language model was based on biblical Hebrew, whereas the VMS is dated to the 15th century. We would like to replace that corpus with one that is more representative of medieval Hebrew, but this would depend on availability of such a corpus in order to test.  
+
+For our experiment, we would rerun the original pipeline to reproduce the paper’s reported numbers. Run the pipeline on our generated texts that are meaningless but matched to the VMS statistics. Third, we will test the pipeline on a real language that is transposed and anagrammed such as Vulgate or lorem ipsum  to show that it can identify real languages under VMS conditions. Then finally, replace the biblical Hebrew language model with medieval Hebrew, if one exists. 
