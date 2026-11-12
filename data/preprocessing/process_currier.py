@@ -33,6 +33,8 @@ with open(raw_currier, "r", encoding="utf-8") as file:
         text = raw_text["text_raw"]
 
         processed_text = re.sub(pattern, "", text)
+        processed_text = processed_text.replace("<->", ".").replace("<~>", ".")
+        processed_text = processed_text.replace(".", " ")
         processed_currier.append(processed_text)
 
 output_path = "data/processed_data/processed_currier.json"
@@ -44,8 +46,13 @@ with open(output_path, "w", encoding="utf-8") as file:
 #for line in processed_currier[:3]:
     #print(line)
 
-#for line in processed_currier:
-    #if "<" in line or ">" in line:
-        #print(line)
-# this returns lines with <->
-# need to figure out what <-> represents in the currier transliteration
+for line in processed_currier:
+    if "<" in line or ">" in line:
+        print(line)
+# with the two .replace() above, this returns nothing, which means 
+# the unexpected text breaks have been handled
+
+# <->, <~> : marks text interrupted by a drawing element, and it implies a word boundary. 
+#It is an annotation in the IVTFF file format, rather than a Currier letter or an unreadable character
+
+# we treat these as word boundaries and replace them with '.'
